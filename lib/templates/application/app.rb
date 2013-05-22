@@ -1,6 +1,6 @@
 # Add .ruby-version for RVM/RBENV.
 create_file '.ruby-version', <<-END
-1.9.2-p290@koi-gem
+ruby-1.9.3-p385@koi-gem
 END
 
 # Add .powrc for RVM users.
