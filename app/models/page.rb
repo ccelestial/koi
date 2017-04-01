@@ -75,7 +75,10 @@ class Page < ActiveRecord::Base
         label: "Small Field",
         hint: "This field has a hint",
         type: "string",
-        className: "form--small"
+        className: "form--small",
+        fieldAttributes: {
+          required: true
+        }
       },{
         name: "medium_field",
         label: "Medium Field",
@@ -98,6 +101,10 @@ class Page < ActiveRecord::Base
           "datepicker-mindate": 0
         }
       },{
+        name: "colour",
+        label: "Colourpicker",
+        type: "colour"
+      },{
         name: "text",
         label: "Textarea",
         type: "textarea"
@@ -105,6 +112,19 @@ class Page < ActiveRecord::Base
         name: "rich_text",
         label: "WYSIWYG Editor",
         type: "rich_text"
+      },{
+        name: "number",
+        label: "Number Field",
+        type: "number"
+      },{
+        name: "range",
+        label: "Range Field",
+        hint: "Min of 10, max of 200",
+        type: "range",
+        fieldAttributes: {
+          min: 10,
+          max: 200
+        }
       },{
         name: "boolean",
         label: "Boolean",
