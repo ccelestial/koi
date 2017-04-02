@@ -121,11 +121,8 @@ textarea,
   margin: 0;
   @include transition(border-color .2s);
   @include border-radius($input-border-radius);
-
-  .layout--main & {
-    border: $input-border;
-    @include box-shadow($input-shadow);
-  }
+  border: $input-border;
+  @include box-shadow($input-shadow);
 
   .layout--main .error &,
   .layout--main .fieldWithErrors & {

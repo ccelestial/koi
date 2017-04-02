@@ -33,6 +33,10 @@
 .composable--field {
   border: $divider;
   background: $white;
+
+  body > & {
+    @include box-shadow(2px 2px 6px rgba(0,0,0,0.1));
+  }
 }
 
 .composable--field-heading {
@@ -51,7 +55,8 @@
 }
 
 .composable--field-heading--up,
-.composable--field-heading--down {
+.composable--field-heading--down,
+.composable--field-heading--collapse {
   width: 44px;
   text-align: center;
   border-left: $divider;
@@ -69,13 +74,16 @@
   }
 }
 
+.composable--field-heading--collapse:before,
 .composable--field-heading--up:before {
   border-top-width: 0;
   border-bottom-color: $primary-color;
 }
 
+.composable--field__collapsed .composable--field-heading--collapse:before,
 .composable--field-heading--down:before {
   border-bottom-width: 0;
+  border-top-width: 6px;
   border-top-color: $primary-color;
 }
 
@@ -84,7 +92,7 @@
   text-indent: -9999px;
   outline: none;
   background: url("/assets/koi/lib/jquery/ui-sortable-handle.png") center no-repeat;
-  cursor: pointer;
+  cursor: ns-resize;
   border-left: $divider;
 }
 

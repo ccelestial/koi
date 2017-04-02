@@ -19,6 +19,7 @@ class Composable extends React.Component {
     this.onFieldChangeValue = this.onFieldChangeValue.bind(this);
     this.moveFieldBy = this.moveFieldBy.bind(this);
     this.dragMove = this.dragMove.bind(this);
+    this.collapseToggleField = this.collapseToggleField.bind(this);
   }
 
   /* 
@@ -73,7 +74,8 @@ class Composable extends React.Component {
     // index is unreliable (these are orderable)
     var datum = {
       id: Date.now(),
-      type: dataType.slug
+      type: dataType.slug,
+      collapsed: false
     }
     // build a template of default values 
     dataType.fields.map(template => {
@@ -139,6 +141,14 @@ class Composable extends React.Component {
     });
   }
 
+  collapseToggleField(fieldIndex) {
+    var newData = this.state.data;
+    newData[fieldIndex].collapsed = !newData[fieldIndex].collapsed;
+    this.setState({
+      data: newData
+    });
+  }
+
   /*
     Update the field value 
   */
@@ -191,6 +201,7 @@ class Composable extends React.Component {
           dragMove={component.dragMove} 
           onFieldChange={component.onFieldChange} 
           getTemplateForField={component.getTemplateForField} 
+          collapseToggleField={component.collapseToggleField} 
         />
         <ComposableAdd 
           dataTypes={component.props.dataTypes} 

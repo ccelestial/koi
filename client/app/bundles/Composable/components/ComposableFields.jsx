@@ -7,21 +7,31 @@ const DragHandle = SortableHandle(() => <span className="drag-handler">Drag to R
 const SortableItem = SortableElement(({index, fieldIndex, datum, component}) => {
   var template = component.props.getTemplateForField(datum.type);
   var parentKey = "composable_index_" + datum.id + "_type_" + datum.type; 
+  var className = "composable--field";
+  if(datum.collapsed) {
+    className += " composable--field__collapsed";
+  }
   return(
-    <div className="composable--field">
+    <div className={className}>
       <div className="composable--field-heading">
         <span className="composable--field-heading--type">{template ? template.name : `Unsupported field type (${datum.type})` }</span>
         <button className="composable--field-heading--remove" type="button" onClick={() => component.props.removeField(fieldIndex)}>Remove</button>
+        <button className="composable--field-heading--collapse" type="button" onClick={() => component.props.collapseToggleField(fieldIndex)}>{datum.collapsed ? "Reveal" : "Collapse"}</button>
         <DragHandle />
       </div>
       {template 
-        ? <ComposableField 
-            template={template.fields} 
-            data={datum} 
-            parentKey={parentKey} 
-            fieldIndex={fieldIndex} 
-            onChange={component.props.onFieldChange}
-          />
+        ? <div>
+            {datum.collapsed
+              ? false
+              : <ComposableField 
+                  template={template.fields} 
+                  data={datum} 
+                  parentKey={parentKey} 
+                  fieldIndex={fieldIndex} 
+                  onChange={component.props.onFieldChange}
+                />
+            }
+          </div>
         : <div className="composable--field--unsupported">
             <p>There is no available template for this field type</p>
           </div>
@@ -66,7 +76,7 @@ class ComposableFields extends React.Component {
                       component={component} 
                       useDragHandle={true} 
                       lockAxis="y" 
-                      lockToContainerEdges={true}
+                      lockToContainerEdges={false}
         />
       );
     } else {
@@ -84,8 +94,10 @@ ComposableFields.propTypes = {
   dataTypes: React.PropTypes.array,
   removeField: React.PropTypes.func,
   moveFieldBy: React.PropTypes.func,
+  dragMove: React.PropTypes.func,
   onFieldChange: React.PropTypes.func,
-  getTemplateForField: React.PropTypes.func
+  getTemplateForField: React.PropTypes.func,
+  collapseToggleField: React.PropTypes.func
 };
 
 export default ComposableFields;
