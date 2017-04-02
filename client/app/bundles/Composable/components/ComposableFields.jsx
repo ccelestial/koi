@@ -5,10 +5,10 @@ import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable
 const DragHandle = SortableHandle(() => <span className="drag-handler">Drag to Reorder</span>);
 
 const SortableItem = SortableElement(({index, fieldIndex, datum, component}) => {
-  var key = "composable_index_" + datum.id + "_type_" + datum.type;
   var template = component.props.getTemplateForField(datum.type);
+  var parentKey = "composable_index_" + datum.id + "_type_" + datum.type; 
   return(
-    <div className="composable--field" key={key}>
+    <div className="composable--field">
       <div className="composable--field-heading">
         <span className="composable--field-heading--type">{template ? template.name : `Unsupported field type (${datum.type})` }</span>
         <button className="composable--field-heading--remove" type="button" onClick={() => component.props.removeField(fieldIndex)}>Remove</button>
@@ -18,7 +18,7 @@ const SortableItem = SortableElement(({index, fieldIndex, datum, component}) => 
         ? <ComposableField 
             template={template.fields} 
             data={datum} 
-            parentKey={key} 
+            parentKey={parentKey} 
             fieldIndex={fieldIndex} 
             onChange={component.props.onFieldChange}
           />
@@ -34,7 +34,12 @@ const SortableList = SortableContainer(({data, onSortEnd, component}) => {
   return(
     <div className="composabe--fields">
       {data.map((datum, index) => (
-        <SortableItem index={index} fieldIndex={index} datum={datum} component={component} />
+        <SortableItem index={index} 
+                      fieldIndex={index} 
+                      datum={datum} 
+                      component={component} 
+                      key={"composable_index_" + datum.id + "_type_" + datum.type} 
+        />
       ))}
     </div>
   );
