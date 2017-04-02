@@ -51,6 +51,9 @@ gem "airbrake"                  , '4.3'
 # Nested fields
 gem 'awesome_nested_fields'     , github: 'katalyst/awesome_nested_fields'
 
+# React on Rails
+gem 'react_on_rails', '~> 6'
+
 # Koi Config
 gem 'koi_config'                , github: 'katalyst/koi_config'
 
