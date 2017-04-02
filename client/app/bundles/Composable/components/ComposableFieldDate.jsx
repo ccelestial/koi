@@ -1,10 +1,12 @@
-class ComposableFieldNumber extends React.Component {
+import React, { PropTypes } from 'react';
+import ComposableFieldString from "./ComposableFieldString";
+
+class ComposableFieldDate extends React.Component {
   render() {
     var className = this.props.fieldSettings.className;
-    var fieldClass = " form--small";
+    var fieldClass = "datepicker form--small";
     var props = $.extend(true, {}, this.props);
     props.fieldSettings.className = className ? className + fieldClass : fieldClass;
-    props.inputType = "number";
 
     return(
       <ComposableFieldString {...props} />
@@ -12,9 +14,12 @@ class ComposableFieldNumber extends React.Component {
   }
 }
 
-ComposableField.propTypes = {
+ComposableFieldDate.propTypes = {
   fieldIndex: React.PropTypes.number,
-  fieldSettings: React.PropTypes.string,
+  fieldSettings: React.PropTypes.object,
   value: React.PropTypes.string,
+  id: React.PropTypes.string,
   onChange: React.PropTypes.func
 };
+
+export default ComposableFieldDate;

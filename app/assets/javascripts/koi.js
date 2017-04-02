@@ -7,8 +7,9 @@
 //= require koi/store
 //= require select2
 //= require cocoon
-//= require react
-//= require react_ujs
+// require react
+// require react_ujs
+//= require webpack-bundle
 //= require koi/velocity
 //= require koi/jquery.touchSwipe
 //= require koi/jquery.placeholder
@@ -70,6 +71,5 @@
 //= require koi/koi/hover
 //= require koi/koi/nestedFields
 //= require koi/koi/wysiwyg
-//= require_tree ./koi/react/Composable
 
 //= require rickshaw_with_d3

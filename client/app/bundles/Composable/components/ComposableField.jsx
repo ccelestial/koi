@@ -1,3 +1,6 @@
+import React, { PropTypes } from 'react';
+import * as ComposableFieldTypes from "./ComposableFieldTypes";
+
 class ComposableField extends React.Component {
 
   constructor(props) {
@@ -27,7 +30,7 @@ class ComposableField extends React.Component {
           var key = this.props.parentKey + "__" + field.name;
           var fieldType = field.type.replace(/_/g, "");
           var capitalisedFirstType = fieldType.charAt(0).toUpperCase() + fieldType.slice(1);
-          var FieldTypeComponent = window["ComposableField" + capitalisedFirstType] || false;
+          var FieldTypeComponent = ComposableFieldTypes["ComposableField" + capitalisedFirstType] || false;
           var wrapperClass = field.wrapperClass || "";
           if(field.data && field.data.length) {
             field.data = this.standardiseData(field.data);
@@ -67,10 +70,19 @@ class ComposableField extends React.Component {
 }
 
 /*
-{React.createElement(FieldTypeComponent, {
-  fieldSettings: field,
-  value: this.props.data[field.name]
-})}
+                  {React.createElement(FieldTypeComponent, {
+                    fieldSettings: field,
+                    fieldIndex: this.props.fieldIndex,
+                    value: this.props.data[field.name],
+                    id: this.props.parentKey + "__" + field.name,
+                    onChange: this.props.onChange 
+                  })}
+                  <FieldTypeComponent fieldSettings={field} 
+                                      value={this.props.data[field.name]} 
+                                      fieldIndex={this.props.fieldIndex} 
+                                      id={this.props.parentKey + "__" + field.name} 
+                                      onChange={this.props.onChange} 
+                  />
 */
 
 ComposableField.propTypes = {
@@ -78,3 +90,5 @@ ComposableField.propTypes = {
   template: React.PropTypes.array,
   parentKey: React.PropTypes.string
 };
+
+export default ComposableField;

@@ -1,3 +1,6 @@
+import React, { PropTypes } from 'react';
+import ComposableFieldString from "./ComposableFieldString";
+
 class ComposableFieldColour extends React.Component {
   render() {
     var data = this.props.fieldSettings.inputData || [];
@@ -11,9 +14,12 @@ class ComposableFieldColour extends React.Component {
   }
 }
 
-ComposableField.propTypes = {
+ComposableFieldColour.propTypes = {
   fieldIndex: React.PropTypes.number,
-  fieldSettings: React.PropTypes.string,
+  fieldSettings: React.PropTypes.object,
   value: React.PropTypes.string,
+  id: React.PropTypes.string,
   onChange: React.PropTypes.func
 };
+
+export default ComposableFieldColour;

@@ -1,3 +1,5 @@
+import React, { PropTypes } from 'react';
+
 class ComposableFieldCheckboxes extends React.Component {
 
   constructor(props) {
@@ -46,9 +48,12 @@ class ComposableFieldCheckboxes extends React.Component {
   }
 }
 
-ComposableField.propTypes = {
+ComposableFieldCheckboxes.propTypes = {
   fieldIndex: React.PropTypes.number,
-  fieldSettings: React.PropTypes.string,
-  value: React.PropTypes.string,
+  fieldSettings: React.PropTypes.object,
+  value: React.PropTypes.array,
+  id: React.PropTypes.string,
   onChange: React.PropTypes.func
 };
+
+export default ComposableFieldCheckboxes;

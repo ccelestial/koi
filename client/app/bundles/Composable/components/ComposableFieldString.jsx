@@ -1,3 +1,5 @@
+import React, { PropTypes } from 'react';
+
 class ComposableFieldString extends React.Component {
   render() {
     var options = this.props.fieldSettings.data || [];
@@ -28,10 +30,12 @@ class ComposableFieldString extends React.Component {
   }
 }
 
-ComposableField.propTypes = {
+ComposableFieldString.propTypes = {
   fieldIndex: React.PropTypes.number,
-  fieldSettings: React.PropTypes.string,
+  fieldSettings: React.PropTypes.object,
   inputType: React.PropTypes.string,
   value: React.PropTypes.string,
   onChange: React.PropTypes.func
 };
+
+export default ComposableFieldString;

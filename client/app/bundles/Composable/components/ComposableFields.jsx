@@ -1,3 +1,6 @@
+import React, { PropTypes } from 'react';
+import ComposableField from "./ComposableField";
+
 class ComposableFields extends React.Component {
   render() {
     var component = this;
@@ -58,3 +61,5 @@ ComposableFields.propTypes = {
   onFieldChange: React.PropTypes.func,
   getTemplateForField: React.PropTypes.func
 };
+
+export default ComposableFields;

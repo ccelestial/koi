@@ -17,3 +17,8 @@ passenger.3000.log
 passenger.3000.pid.lock
 
 test/dummy/config/application.yml
+
+# Generated js bundles
+/app/assets/webpack/*
+test/dummy/app/assets/webpack/*
+client/node_modules/*

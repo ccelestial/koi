@@ -1,3 +1,7 @@
+import React, { PropTypes } from 'react';
+import ComposableFields from './ComposableFields';
+import ComposableAdd from './ComposableAdd';
+
 class Composable extends React.Component {
   
   constructor(props) {
@@ -68,8 +72,16 @@ class Composable extends React.Component {
       datum[template.name] = "";
       if(template.defaultValue) {
         datum[template.name] = template.defaultValue;
+      } else if(template.type === "check_boxes") {
+        datum[template.name] = [];
+      } else if(template.type === "boolean") {
+        datum[template.name] = false;
       } else if(template.type === "select" && template.data) {
-        datum[template.name] = template.data[0];
+        if(typeof(template.data[0]) === "object") {
+          datum[template.name] = template.data[0].value + "";
+        } else {
+          datum[template.name] = template.data[0];
+        }
       }
     })
     // push datum in to data and then set state
@@ -226,4 +238,5 @@ Composable.defaultProps = {
   data: [],
   dataTypes: defaultDataTypes
 };
-7
+
+export default Composable;

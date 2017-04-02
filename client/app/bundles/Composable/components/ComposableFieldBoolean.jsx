@@ -1,3 +1,5 @@
+import React, { PropTypes } from 'react';
+
 class ComposableFieldBoolean extends React.Component {
   render() {
     var options = this.props.fieldSettings.data || [];
@@ -15,9 +17,12 @@ class ComposableFieldBoolean extends React.Component {
   }
 }
 
-ComposableField.propTypes = {
+ComposableFieldBoolean.propTypes = {
   fieldIndex: React.PropTypes.number,
-  fieldSettings: React.PropTypes.string,
-  value: React.PropTypes.string,
+  fieldSettings: React.PropTypes.object,
+  value: React.PropTypes.bool,
+  id: React.PropTypes.string,
   onChange: React.PropTypes.func
 };
+
+export default ComposableFieldBoolean;

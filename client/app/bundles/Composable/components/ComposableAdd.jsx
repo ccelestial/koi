@@ -1,3 +1,5 @@
+import React, { PropTypes } from 'react';
+
 class ComposableAdd extends React.Component {
   render() {
     var component = this;
@@ -25,3 +27,4 @@ ComposableAdd.propTypes = {
   addField: React.PropTypes.func
 };
 
+export default ComposableAdd;
