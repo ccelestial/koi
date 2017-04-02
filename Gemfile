@@ -18,7 +18,7 @@ gem 'i18n-active_record'        , git: 'https://github.com/svenfuchs/i18n-active
                                   branch: 'master'
 
 gem 'sass-rails', '~> 5.0.0'
-gem 'react-rails', '~> 1.10.0'
+gem "react_on_rails", "~> 6"
 gem 'ornament', github: 'katalyst/ornament'
 gem 'tzinfo-data', platforms: ['mingw', 'mswin']
 gem 'better_errors'
