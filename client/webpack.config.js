@@ -29,21 +29,7 @@ const config = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
-    new BabiliPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        screw_ie8: true,
-        warnings: false
-      },
-      sourceMap: false
-    })
+    new webpack.EnvironmentPlugin({ NODE_ENV: 'production' })
   ],
   module: {
     rules: [
@@ -73,4 +59,20 @@ if (devBuild) {
   module.exports.devtool = 'eval-source-map';
 } else {
   console.log('Webpack production build for Rails'); // eslint-disable-line no-console
+  module.exports.plugins.push(
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new BabiliPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        screw_ie8: true,
+        warnings: false
+      },
+      sourceMap: false
+    })
+  )
 }

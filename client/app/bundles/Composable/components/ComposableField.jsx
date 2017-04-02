@@ -69,22 +69,6 @@ class ComposableField extends React.Component {
   }
 }
 
-/*
-                  {React.createElement(FieldTypeComponent, {
-                    fieldSettings: field,
-                    fieldIndex: this.props.fieldIndex,
-                    value: this.props.data[field.name],
-                    id: this.props.parentKey + "__" + field.name,
-                    onChange: this.props.onChange 
-                  })}
-                  <FieldTypeComponent fieldSettings={field} 
-                                      value={this.props.data[field.name]} 
-                                      fieldIndex={this.props.fieldIndex} 
-                                      id={this.props.parentKey + "__" + field.name} 
-                                      onChange={this.props.onChange} 
-                  />
-*/
-
 ComposableField.propTypes = {
   data: React.PropTypes.object,
   template: React.PropTypes.array,

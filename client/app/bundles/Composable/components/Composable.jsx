@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import ComposableFields from './ComposableFields';
 import ComposableAdd from './ComposableAdd';
+import {arrayMove} from 'react-sortable-hoc';
 
 class Composable extends React.Component {
   
@@ -17,6 +18,7 @@ class Composable extends React.Component {
     this.onFieldChangeBoolean = this.onFieldChangeBoolean.bind(this);
     this.onFieldChangeValue = this.onFieldChangeValue.bind(this);
     this.moveFieldBy = this.moveFieldBy.bind(this);
+    this.dragMove = this.dragMove.bind(this);
   }
 
   /* 
@@ -38,7 +40,13 @@ class Composable extends React.Component {
     Generic move element function
   */
   moveArrayElement(array, value, offset) {
-    var oldIndex = array.indexOf(value);
+    if(typeof(value) === "object") {
+      // increment method
+      var oldIndex = array.indexOf(value);
+    } else {
+      // dragable method
+      var oldIndex = value;
+    }
     if(oldIndex > -1) {
       var newIndex = (oldIndex + offset);
       if(newIndex < 0) {
@@ -122,6 +130,16 @@ class Composable extends React.Component {
   }
 
   /*
+    Reordering the data set by dragging 
+  */
+  dragMove(oldIndex, newIndex) {
+    var newData = arrayMove(this.state.data, oldIndex, newIndex);
+    this.setState({
+      data: newData
+    });
+  }
+
+  /*
     Update the field value 
   */
   onFieldChange(event, fieldIndex, template) {
@@ -170,6 +188,7 @@ class Composable extends React.Component {
           data={component.state.data} 
           removeField={component.removeField} 
           moveFieldBy={component.moveFieldBy} 
+          dragMove={component.dragMove} 
           onFieldChange={component.onFieldChange} 
           getTemplateForField={component.getTemplateForField} 
         />

@@ -32,6 +32,7 @@
 
 .composable--field {
   border: $divider;
+  background: $white;
 }
 
 .composable--field-heading {
@@ -79,7 +80,6 @@
 }
 
 .composable--field-heading .drag-handler {
-  display: none;
   width: 44px;
   text-indent: -9999px;
   outline: none;
