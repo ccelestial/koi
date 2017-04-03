@@ -39,7 +39,7 @@ $composable-field-gutters: $xxx-small-unit;
   border: $divider;
   background: $white;
 
-  body > & {
+  body > .composable--field--wrapper & {
     @include box-shadow(2px 2px 6px rgba(0,0,0,0.1));
   }
 }
