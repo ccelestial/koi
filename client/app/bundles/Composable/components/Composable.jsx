@@ -100,6 +100,7 @@ class Composable extends React.Component {
       data: data
     }, () => {
       Ornament.C.FormHelpers.init();
+      $(".composable--field").last().find("input,textarea,select").first().focus();
     });
     return false;
   }

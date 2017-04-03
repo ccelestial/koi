@@ -12,7 +12,7 @@ class ComposableAdd extends React.Component {
           {component.props.dataTypes.map((dataType) => {
             return(
               <div className="composable--add--type" key={"composable_add_field_type_" + Ornament.parameterize(dataType.name)}>
-                <button type="button" onClick={() => component.props.addField(event, dataType)}>{dataType.name}</button>
+                <button type="button" aria-label={"Add new " + dataType.name} onClick={() => component.props.addField(event, dataType)}>{dataType.name}</button>
               </div>
             );
           })}
