@@ -93,7 +93,7 @@ class Composable extends React.Component {
           datum[template.name] = template.data[0];
         }
       }
-    })
+    });
     // push datum in to data and then set state
     data.push(datum);
     this.setState({
