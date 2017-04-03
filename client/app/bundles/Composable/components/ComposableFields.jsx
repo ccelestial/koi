@@ -25,18 +25,13 @@ const SortableItem = SortableElement(({index, fieldIndex, datum, component}) => 
           <DragHandle />
         </div>
         {template 
-          ? <div>
-              {datum.collapsed
-                ? false
-                : <ComposableField 
-                    template={template.fields} 
-                    data={datum} 
-                    parentKey={parentKey} 
-                    fieldIndex={fieldIndex} 
-                    onChange={component.props.onFieldChange}
-                  />
-              }
-            </div>
+          ? <ComposableField 
+              template={template.fields} 
+              data={datum} 
+              parentKey={parentKey} 
+              fieldIndex={fieldIndex} 
+              onChange={component.props.onFieldChange}
+            />
           : <div className="composable--field--unsupported">
               <p>There is no available template for this field type</p>
             </div>

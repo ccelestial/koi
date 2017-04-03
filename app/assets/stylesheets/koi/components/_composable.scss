@@ -112,6 +112,10 @@ $composable-field-gutters: $xxx-small-unit;
 
 .composable--field-template {
   padding: $panel-padding;
+
+  .composable--field__collapsed & {
+    display: none;
+  }
 }
 
 .composable--field--unsupported {
