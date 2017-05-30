@@ -58,8 +58,10 @@ gem 'koi_config'                , github: 'katalyst/koi_config'
 # NOTE: For building projects with the local version, uncomment this
 # gem 'koi'                       , path: File.join(File.dirname(__FILE__), '../../..')
 # TODO: re-enable this for a release
-gem 'koi'                       , github: 'katalyst/koi',
-                                  tag: "v#{koi_version}"
+gem 'koi', github: 'katalyst/koi', tag: "v#{koi_version}"
+puts "*************************"
+puts koi_version
+puts "*************************"
 
 # i18n ActiveRecord backend
 gem 'i18n-active_record',   github: 'svenfuchs/i18n-active_record',
