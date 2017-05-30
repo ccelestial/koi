@@ -19,6 +19,8 @@ def koi_version
   version_file_path += 'koi/version.rb'
   version_data = open(version_file_path) {|f| f.read }
 
+  puts version_file_path
+
   version = version_data.split("\n")[1].split('=').last.strip.gsub(/\"/, '')
 end
 
@@ -61,7 +63,7 @@ gem 'koi'                       , path: File.join(File.dirname(__FILE__), '../..
 # TODO: re-enable this for a release
 # gem 'koi'                       , github: 'katalyst/koi',
 #                                   tag: "v#{koi_version}"
-
+"#{koi_version}"
 
 # i18n ActiveRecord backend
 gem 'i18n-active_record',   github: 'svenfuchs/i18n-active_record',
