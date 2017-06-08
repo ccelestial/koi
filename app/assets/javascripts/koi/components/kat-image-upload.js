@@ -1469,7 +1469,7 @@
 
 })(jQuery);
 
-$(document).on("ornament:refresh", function(){
+$(document).on("ornament:uploaders", function(){
 
   var $uploads = $("[data-file-uploader]");
 
@@ -1494,6 +1494,10 @@ $(document).on("ornament:refresh", function(){
     });
 
   });
+});
+
+$(document).on("ornament:refresh", function(){
+  $(document).trigger("ornament:uploaders");
 
   // Warn users about leaving the page while uploads are
   // still in progress

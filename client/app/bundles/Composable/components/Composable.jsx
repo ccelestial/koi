@@ -135,10 +135,15 @@ class Composable extends React.Component {
   /*
     Reordering the data set by dragging 
   */
-  dragMove(oldIndex, newIndex) {
+  dragMove(oldIndex, newIndex, $listElement) {
     var newData = arrayMove(this.state.data, oldIndex, newIndex);
+    // Destroy CKEditors
+    // Ornament.CKEditor.sizeContainerAndDestroy($listElement);
     this.setState({
       data: newData
+    }, () => {
+      // Refresh CKEditors 
+      // Ornament.CKEditor.bindAndReleaseSizing($listElement);
     });
   }
 
@@ -154,6 +159,7 @@ class Composable extends React.Component {
     Update the field value 
   */
   onFieldChange(event, fieldIndex, template) {
+    console.log(event, fieldIndex, template);
     if(template.type === "boolean") {
       this.onFieldChangeBoolean(event, fieldIndex, template);
     } else if (["check_boxes", "rich_text"].indexOf(template.type) > -1) {
@@ -167,10 +173,15 @@ class Composable extends React.Component {
   onFieldChangeDefault(event, fieldIndex, template) {
     var value = event.target.value;
     var data = this.state.data;
-    data[fieldIndex][template.name] = value;
-    this.setState({
-      data: data
-    });
+    if(template.name) {
+      data[fieldIndex][template.name] = value;
+      this.setState({
+        data: data
+      });
+    } else {
+      console.warn("Warning: Tried setting a value to a field with no name at index " + fieldIndex);
+      console.warn("Please check if all fields have a name");
+    }
   }
 
   onFieldChangeBoolean(event, fieldIndex, template) {

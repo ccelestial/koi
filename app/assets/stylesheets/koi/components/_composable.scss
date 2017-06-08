@@ -35,6 +35,10 @@ $composable-field-gutters: $xxx-small-unit;
   margin-top: $composable-field-gutters * -1;
 }
 
+.composable--field--wrapper {
+  padding-top: $composable-field-gutters;
+}
+
 .composable--field {
   border: $divider;
   background: $white;
@@ -99,10 +103,6 @@ $composable-field-gutters: $xxx-small-unit;
   background: url("/assets/koi/lib/jquery/ui-sortable-handle.png") center no-repeat;
   cursor: ns-resize;
   border-left: $divider;
-}
-
-.composable--field--wrapper {
-  padding-top: $composable-field-gutters;
 }
 
 .composable--field-heading--type {

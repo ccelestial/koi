@@ -61,6 +61,17 @@ class Page < ActiveRecord::Base
         className: "form--auto"
       }]
     },{
+      name: "Image",
+      slug: "image",
+      fields: [{
+        type: "file",
+        name: "image",
+        inputData: {
+          "file-uploader": "",
+          "file-types": "jpg, png"
+        }
+      }]
+    },{
       name: "Text",
       slug: "text",
       fields: [{

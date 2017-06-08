@@ -5,6 +5,7 @@
   var CKEditor = Ornament.CKEditor = {
 
     $selector: '.wysiwyg.source',
+    loadingAttribute: "data-ckeditor-loading",
 
     bindForTextarea: function(textarea, force){
       force = force || false;
@@ -25,6 +26,72 @@
       force = force || false;
       $(CKEditor.$selector).each(function(){
         CKEditor.bindForTextarea(this, force);
+      });
+    },
+
+    destroy: function($parent, rebind) {
+      rebind = rebind || false;
+      CKEditor.destroyAndRebind($parent, rebind);
+    },
+
+    getEditorContainer: function($editor) {
+      return $editor.parent();
+    },
+
+    sizeContainerAndDestroy: function($parent){
+      $parent = $parent || false;
+      var $editors = CKEditor.getEditorsForParentOrWindow($parent);
+      $editors.each(function(){
+        var $editor = $(this);
+        var instance = CKEDITOR.instances[$editor.attr("id")];
+        if(instance) {
+          var $container = CKEditor.getEditorContainer($editor);
+          $instance = $(instance.container.$);
+          var $placeholder = $("<div />").attr(CKEditor.loadingAttribute, "").css("height", $instance.outerHeight());
+          $container.append($placeholder);
+          $editor.hide();
+          instance.destroy();
+        }
+      });
+    },
+
+    bindAndReleaseSizing: function($parent) {
+      $parent = $parent || false;
+      var $editors = CKEditor.getEditorsForParentOrWindow($parent);
+      $editors.each(function(){
+        var editor = this;
+        var $editor = $(editor);
+        var $container = CKEditor.getEditorContainer($editor);
+        CKEditor.bindForTextarea(editor, true);
+        var instance = CKEDITOR.instances[$editor.attr("id")];
+        if(instance) {
+          instance.on('instanceReady', function(){
+            $container.find("[" + CKEditor.loadingAttribute + "]").remove();
+          });
+        }
+      });
+    },
+
+    getEditorsForParentOrWindow($parent) {
+      return $parent ? $parent.find(CKEditor.$selector) : $(CKEditor.$selector);
+    },
+
+    // Destroy and rebind
+    destroyAndRebind: function($parent, rebind){
+      $parent = $parent || false;
+      rebind = rebind || true;
+      var $editors = CKEditor.getEditorsForParentOrWindow($parent);
+      $editors.each(function(){
+        var $editor = $(this);
+        var instance = CKEDITOR.instances[$editor.attr("id")];
+        if(instance) {
+          instance.destroy();
+          if(rebind) {
+            CKEditor.bindForTextarea($editor[0], true);
+          }
+        } else {
+          console.warn("No instance for " + $editor.attr("id"));
+        }
       });
     }
   }

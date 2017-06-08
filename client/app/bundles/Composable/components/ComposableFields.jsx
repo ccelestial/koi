@@ -64,7 +64,7 @@ class ComposableFields extends React.Component {
   }
 
   onSortEnd({oldIndex, newIndex, collection}, event) {
-    this.props.dragMove(oldIndex, newIndex);
+    this.props.dragMove(oldIndex, newIndex, $(this.listElement.node).closest(".composable--fields"));
   }
 
   render() {
@@ -80,6 +80,7 @@ class ComposableFields extends React.Component {
                       lockToContainerEdges={true} 
                       hideSortableGhost={true} 
                       useWindowAsScrollContainer={true} 
+                      ref={(element) => { this.listElement = element; }}
         />
       );
     } else {

@@ -16,6 +16,10 @@ class ComposableFieldRichtext extends React.Component {
   */
   afterMount() {
     var component = this;
+    var existingInstance = CKEDITOR.instances[this.props.id];
+    if(existingInstance) {
+      existingInstance.destroy();
+    }
     var $editor = $("#" + this.props.id)[0];
     Ornament.CKEditor.bindForTextarea($editor);
     var instance = CKEDITOR.instances[this.props.id];
