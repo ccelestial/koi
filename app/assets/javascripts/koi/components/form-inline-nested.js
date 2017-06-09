@@ -147,10 +147,10 @@
           axis: "y",
           handle: ".drag-me",
           start: function( event, ui ) {
-            Ornament.CKEditor.destroyForParent(nested_fields);
+            $(document).trigger("ornament:inline-nested:drag-start", [nested_fields]);
           },
           stop: function( event, ui ) {
-            Ornament.CKEditor.bindForParent(nested_fields);
+            $(document).trigger("ornament:inline-nested:drag-end", [nested_fields]);
             updateOrdinal(nested_fields);
           }
         });

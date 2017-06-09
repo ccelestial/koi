@@ -60,7 +60,6 @@
 //= require koi/components/table
 //= require koi/components/styleguide
 
-//= require koi/ckeditor
 //= require koi/common
 //= require koi/koi/koi
 //= require koi/koi/shed
@@ -68,7 +67,6 @@
 //= require koi/koi/sortable
 //= require koi/koi/hover
 //= require koi/koi/nestedFields
-//= require koi/koi/wysiwyg
 //= require koi/koi/assets
 
 //= require rickshaw_with_d3
